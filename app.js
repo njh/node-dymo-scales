@@ -6,6 +6,7 @@ var reading = false,
     vid = 0x922,
     pid = 0x8003;
 
+// try to connect to the scale if available
 startReading();
 
 usb.on('attach', function (device) {
