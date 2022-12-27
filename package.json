@@ -1,0 +1,25 @@
+{
+  "name": "dymo-scales",
+  "version": "1.0.0",
+  "description": "Read from Dymo Scales over USB from command line node.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/njh/node-dymo-scales.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/njh/node-dymo-scales/issues"
+  },
+  "homepage": "https://github.com/njh/node-dymo-scales#readme",
+  "dependencies": {
+    "node-hid": "^2.1.2",
+    "usb-detection": "^4.14.1"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }
+}
