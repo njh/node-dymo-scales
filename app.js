@@ -36,6 +36,30 @@ usbDetect.find(dymoVid, m10Pid, (err, devices) => {
   }
 })
 
+function unitStr (val) {
+  switch (val) {
+    case 2:
+      return 'grams'
+    case 11:
+      return 'ounces'
+    default:
+      return '??'
+  }
+}
+
+function formatData (data) {
+  if (data[1] === 2) {
+    return 'zero'
+  } else {
+    const units = unitStr(data[2])
+    const rawWeight = data[4] + (256 * data[5])
+    const positive = (data[1] === 5) ? -1 : 1
+    const factor = data[3] ? 10 : 1
+    const weight = (rawWeight * positive) / factor
+    return weight + ' ' + units
+  }
+}
+
 function startReading () {
   if (reading) return
   try {
@@ -45,9 +69,8 @@ function startReading () {
     reading = true
 
     d.on('data', function (data) {
-      const buf = Buffer.from(data)
-      const grams = buf[4] + (256 * buf[5])
-      console.log(new Date().toISOString() + ': ' + grams + ' grams')
+      const date = new Date().toISOString()
+      console.log(date + ': ' + formatData(data))
     })
 
     d.on('error', function (error) {
